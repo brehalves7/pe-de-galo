@@ -5,16 +5,14 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  name: z.string().min(3, "Digite seu nome completo"),
-  email: z.string().email("E-mail inválido"),
+  name: z.string().min(3, { message: "Digite seu nome completo" }),
+  email: z.string().email({ message: "E-mail inválido" }),
   phone: z
     .string()
-    .min(8, "Digite um telefone válido")
-    .regex(/^\d+$/, "Apenas números"),
-  projectType: z.enum(["residencial", "comercial", "personalizado"], {
-    errorMap: () => ({ message: "Selecione um tipo de projeto" }),
-  }),
-  message: z.string().min(10, "A mensagem deve ter pelo menos 140 caracteres"),
+    .min(8, { message: "Digite um telefone válido" })
+    .regex(/^\d+$/, { message: "Apenas números" }),
+  projectType: z.enum(["residencial", "comercial", "personalizado"]),
+  message: z.string().min(10, { message: "A mensagem deve ter pelo menos 10 caracteres" }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -26,9 +24,18 @@ export default function BudgetForm() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      projectType: undefined, // Usando undefined em vez de any
+    },
   });
 
   const onSubmit = (data: FormData) => {
+    // Validação adicional para projectType
+    if (!data.projectType) {
+      alert("Por favor, selecione um tipo de projeto");
+      return;
+    }
+    
     console.log("Dados enviados:", data);
     alert("Mensagem enviada com sucesso!");
     // futuramente aqui pode chamar API Next.js ou backend
@@ -103,7 +110,7 @@ export default function BudgetForm() {
             <option value="personalizado">Personalizado</option>
           </select>
           {errors.projectType && (
-            <p className="text-red-500 text-sm">{errors.projectType.message}</p>
+            <p className="text-red-500 text-sm">Selecione um tipo de projeto</p>
           )}
         </div>
 

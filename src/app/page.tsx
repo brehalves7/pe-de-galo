@@ -175,19 +175,19 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-3">
             <blockquote className="p-5 bg-gray-800 rounded-lg shadow">
               <p className="italic text-sm text-gray-300">
-                "Produto excelente, super confortável!"
+                Produto excelente, super confortável!
               </p>
               <footer className="mt-3 text-xs font-semibold">— João</footer>
             </blockquote>
             <blockquote className="p-5 bg-gray-800 rounded-lg shadow">
               <p className="italic text-sm text-gray-300">
-                "Chegou rápido e a qualidade é ótima."
+                Chegou rápido e a qualidade é ótima.
               </p>
               <footer className="mt-3 text-xs font-semibold">— Maria</footer>
             </blockquote>
             <blockquote className="p-5 bg-gray-800 rounded-lg shadow">
               <p className="italic text-sm text-gray-300">
-                "Recomendo a todos, valeu cada centavo."
+                Recomendo a todos, valeu cada centavo.
               </p>
               <footer className="mt-3 text-xs font-semibold">— Pedro</footer>
             </blockquote>
@@ -201,9 +201,11 @@ export default function Home() {
         >
           {/* Imagem */}
           <div className="flex justify-center">
-            <img
-              src="pe-de-galo.jpg"
+            <Image
+              src="/pe-de-galo.jpg"
               alt="Minha foto"
+              width={256}
+              height={256}
               className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg"
             />
           </div>
@@ -240,18 +242,19 @@ export default function Home() {
           <h3 className="text-lg font-bold mb-2 md:text-xl text-white">
             DESCONTO EXCLUSIVO:
           </h3>
-          <p className="text-gray-300 text-sm mb-4 md:text-base">
+          <div className="text-gray-300 text-sm mb-4 md:text-base">
             Na compra do projeto pronto hoje, você terá um super desconto em
             outros itens como:
-            <p className="py-1">✔ Checklist da Obra Inteligente</p>
-            <p className="py-1">✔ Guia Prático de Tomadas e Iluminação </p>
-            <p className="py-1">✔ Guia Essencial de Materiais e Acabamentos</p>
-          </p>
+            <div className="py-1">✔ Checklist da Obra Inteligente</div>
+            <div className="py-1">✔ Guia Prático de Tomadas e Iluminação</div>
+            <div className="py-1">✔ Guia Essencial de Materiais e Acabamentos</div>
+          </div>
           <p className="text-gray-300 text-sm mb-4 md:text-base">
             📌 Materiais simples, diretos e práticos para evitar erros comuns na
             obra.
           </p>
         </section>
+
         {/* Garantia */}
         <section
           id="garantia"
